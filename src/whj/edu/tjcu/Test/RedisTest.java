@@ -2,6 +2,7 @@ package whj.edu.tjcu.Test;
 
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import java.util.List;
 import java.util.Map;
@@ -151,6 +152,23 @@ public class RedisTest {
 
         //释放连接
         jedis.close();
+    }
+
+    @Test
+    /**
+     * jedispoll连接池工具类
+     */
+    public void JedispollTest(){
+        //创建jedis连接池
+        JedisPool jedisPool = new JedisPool();
+        //获取连接
+        Jedis jedis = jedisPool.getResource();
+        //使用
+        String set = jedis.set("username", "wanghengjie");
+        System.out.println(set);
+        //归还连接，归还到连接池
+        jedis.close();
+
 
     }
 
