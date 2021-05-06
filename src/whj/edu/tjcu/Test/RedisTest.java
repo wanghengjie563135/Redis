@@ -3,6 +3,7 @@ package whj.edu.tjcu.Test;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.List;
 import java.util.Map;
@@ -159,6 +160,10 @@ public class RedisTest {
      * jedispoll连接池工具类
      */
     public void JedispollTest(){
+        //创建一个配置对象
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+        jedisPoolConfig.setMaxTotal(50);
+        jedisPoolConfig.setMaxIdle(10);
         //创建jedis连接池
         JedisPool jedisPool = new JedisPool();
         //获取连接
